@@ -5,12 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class StudentService {
 
     @Autowired
     StudentRepository repository;
+
+    public List<Student> getStudentWithSatHigherThan(Integer sat) {
+        return repository.findAllBySatScoreGreaterThan(sat);
+    }
 
     public Iterable<Student> all() {
         return repository.findAll();

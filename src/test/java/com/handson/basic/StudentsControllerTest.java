@@ -10,7 +10,6 @@ import com.handson.basic.utils.TestMocks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.verification.VerificationMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
@@ -18,16 +17,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.multipart.MultipartFile;
-
 
 import static com.handson.basic.utils.StudentSearch.StudentSearchBuilder.aStudentSearch;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 
 
@@ -73,7 +68,7 @@ class StudentsControllerTest {
         c.givenStudents(10, sc);
         sc.smsAll("hi");
         Thread.sleep(1000);
-        verify(smsService, atLeastOnce()).send(any(),any());
+        verify(smsService, atLeastOnce()).send(any());
     }
 
     @Test
